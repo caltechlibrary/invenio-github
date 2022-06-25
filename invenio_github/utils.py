@@ -20,20 +20,18 @@
 """Various utility functions."""
 
 import json
-import yaml
-
 from datetime import datetime
-from operator import itemgetter
 
 import dateutil.parser
 import pytz
 import requests
 import six
+import yaml
 from flask import current_app
-from github3 import repository
 from werkzeug.utils import import_string
 
 from .errors import CustomGitHubMetadataError
+
 
 def utcnow():
     """UTC timestamp (with timezone)."""
