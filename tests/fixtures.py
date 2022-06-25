@@ -195,8 +195,10 @@ def USER(login, email=None, bio=True):
                          'following{/other_user}' % l,
         'gists_url': 'https://api.github.com/users/%s/gists{/gist_id}' % l,
         'gravatar_id': '12345678',
+        'hireable': False,
         'html_url': 'https://github.com/%s' % l,
         'id': 1234,
+        'location': 'San Francisco',
         'login': '%s' % l,
         'organizations_url': 'https://api.github.com/users/%s/orgs' % l,
         'owned_private_repos': 0,
@@ -217,6 +219,8 @@ def USER(login, email=None, bio=True):
         'subscriptions_url': 'https://api.github.com/users/%s/'
                              'subscriptions' % l,
         'total_private_repos': 0,
+        'twitter_username': 'monatheoctocat',
+        'two_factor_authentication': True,
         'type': 'User',
         'updated_at': '2014-05-09T12:26:44Z',
         'url': 'https://api.github.com/users/%s' % l,
@@ -246,6 +250,7 @@ def REPO(owner, repo, repo_id):
     return {
         'archive_url': 'https://api.github.com/repos/%s/'
                        '{archive_format}{/ref}' % r,
+        'archived': False,
         'assignees_url': 'https://api.github.com/repos/%s/'
                          'assignees{/user}' % r,
         'blobs_url': 'https://api.github.com/repos/%s/git/blobs{/sha}' % r,
@@ -263,7 +268,9 @@ def REPO(owner, repo, repo_id):
         'contributors_url': 'https://api.github.com/repos/%s/contributors' % r,
         'created_at': '2012-10-29T10:24:02Z',
         'default_branch': 'master',
+        'deployments_url': 'https://api.github.com/repos/%s/deployments' % r,
         'description': '',
+        'disabled': False,
         'downloads_url': 'https://api.github.com/repos/%s/downloads' % r,
         'events_url': 'https://api.github.com/repos/%s/events' % r,
         'fork': False,
@@ -278,11 +285,14 @@ def REPO(owner, repo, repo_id):
         'git_url': 'git://github.com/%s.git' % r,
         'has_downloads': True,
         'has_issues': True,
+        'has_pages': False,
+        'has_projects': True,
         'has_wiki': True,
         'homepage': None,
         'hooks_url': 'https://api.github.com/repos/%s/hooks' % r,
         'html_url': 'https://github.com/%s' % r,
         'id': repo_id,
+        'is_template': False,
         'issue_comment_url': 'https://api.github.com/repos/%s/issues/'
                              'comments/{number}' % r,
         'issue_events_url': 'https://api.github.com/repos/%s/issues/'
@@ -297,6 +307,8 @@ def REPO(owner, repo, repo_id):
                           'milestones{/number}' % r,
         'mirror_url': None,
         'name': 'altantis-conf',
+        'network_count': 0,
+        'node_id': 'MDEwOlJlcG9zaXRvcnkxMjk2MjY5',
         'notifications_url': 'https://api.github.com/repos/%s/'
                              'notifications{?since,all,participating}',
         'open_issues': 0,
@@ -336,13 +348,16 @@ def REPO(owner, repo, repo_id):
         'stargazers_url': 'https://api.github.com/repos/%s/stargazers' % r,
         'statuses_url': 'https://api.github.com/repos/%s/statuses/{sha}' % r,
         'subscribers_url': 'https://api.github.com/repos/%s/subscribers' % r,
+        'subscribers_count': 0,
         'subscription_url': 'https://api.github.com/repos/%s/subscription' % r,
         'svn_url': 'https://github.com/%s' % r,
         'tags_url': 'https://api.github.com/repos/%s/tags' % r,
         'teams_url': 'https://api.github.com/repos/%s/teams' % r,
+        'topics': ['api'],
         'trees_url': 'https://api.github.com/repos/%s/git/trees{/sha}' % r,
         'updated_at': '2013-10-25T11:30:04Z',
         'url': 'https://api.github.com/repos/%s' % r,
+        'visibility': 'public',
         'watchers': 0,
         'watchers_count': 0
     }
