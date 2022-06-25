@@ -60,3 +60,9 @@ target/
 
 # Test database
 test.db
+
+# Ignore some common backup file patterns
+*~
+*.bak
+.#*
+\#*#
