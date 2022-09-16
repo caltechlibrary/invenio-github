@@ -24,8 +24,6 @@
 
 """Models for GitHub integration."""
 
-from __future__ import absolute_import
-
 import uuid
 from enum import Enum
 

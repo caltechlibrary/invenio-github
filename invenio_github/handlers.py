@@ -22,8 +22,6 @@
 
 """Implement OAuth client handler."""
 
-from __future__ import absolute_import
-
 from flask import current_app, redirect, url_for
 from flask_login import current_user
 from invenio_db import db

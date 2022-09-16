@@ -23,8 +23,6 @@
 
 """Admin model views for GitHub."""
 
-from __future__ import absolute_import, print_function
-
 from flask_admin.contrib.sqla import ModelView
 
 from .models import Release, Repository

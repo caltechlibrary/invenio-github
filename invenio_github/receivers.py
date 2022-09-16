@@ -22,8 +22,6 @@
 
 """Task for managing GitHub integration."""
 
-from __future__ import absolute_import
-
 from datetime import datetime
 
 from invenio_db import db
