@@ -24,9 +24,8 @@
 
 """Invenio module that adds GitHub integration to the platform."""
 
-from __future__ import absolute_import, print_function
-
 from .ext import InvenioGitHub
-from .version import __version__
+
+__version__ = "1.0.0a25"
 
 __all__ = ('__version__', 'InvenioGitHub')
