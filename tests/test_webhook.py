@@ -35,7 +35,7 @@ from invenio_github.models import Repository
 def test_webhook_post(app, db, tester_id, location, remote_token, github_api):
     """Test payload parsing on webhook."""
     from . import fixtures
-    with patch('invenio_deposit.api.Deposit.indexer'):
+    with patch('invenio_deposit.api.RecordIndexer'):
         # Enable repository webhook.
         Repository.enable(tester_id, github_id=3, name='arepo', hook=1234)
         db.session.commit()
