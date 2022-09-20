@@ -81,13 +81,15 @@ def app(request):
     instance_path = tempfile.mkdtemp()
     app_ = Flask('testapp', instance_path=instance_path)
     app_.config.update(
+        # The following are needed for the badge tests.
+        APP_THEME=["semantic-ui"],
+        THEME_ICONS='',
+
         # HTTPretty doesn't play well with Redis.
         # See gabrielfalcao/HTTPretty#110
         CACHE_TYPE='simple',
         CELERY_ALWAYS_EAGER=True,
-        CELERY_CACHE_BACKEND='memory',
         CELERY_EAGER_PROPAGATES_EXCEPTIONS=True,
-        CELERY_RESULT_BACKEND='cache',
         GITHUB_APP_CREDENTIALS=dict(
             consumer_key='changeme',
             consumer_secret='changeme',
@@ -109,6 +111,9 @@ def app(request):
         SECURITY_DEPRECATED_PASSWORD_SCHEMES=[],
         TESTING=True,
         WTF_CSRF_ENABLED=False,
+
+        FORMATTER_BADGES_ALLOWED_TITLES=["DOI", "doi"],
+        FORMATTER_BADGES_TITLE_MAPPING={"doi": "DOI"},
     )
     app_.config['OAUTHCLIENT_REMOTE_APPS']['github']['params'][
         'request_token_params'][
@@ -340,15 +345,17 @@ def github_api(app, db, tester_id, remote_token):
 
     from . import fixtures
 
+    gs = github3.session.GitHubSession()
+
     mock_api = MagicMock()
     mock_api.me.return_value = github3.users.User(
-        fixtures.USER(login='auser', email='auser@inveniosoftware.org'))
+        fixtures.USER(login='auser', email='auser@inveniosoftware.org'), gs)
 
-    repo_1 = github3.repos.Repository(fixtures.REPO('auser', 'repo-1', 1))
+    repo_1 = github3.repos.Repository(fixtures.REPO('auser', 'repo-1', 1), gs)
     repo_1.hooks = MagicMock(return_value=[])
     repo_1.file_contents = MagicMock(return_value=None)
 
-    repo_2 = github3.repos.Repository(fixtures.REPO('auser', 'repo-2', 2))
+    repo_2 = github3.repos.Repository(fixtures.REPO('auser', 'repo-2', 2), gs)
     repo_2.hooks = MagicMock(return_value=[])
 
     def mock_metadata_contents(path, ref):
@@ -363,7 +370,7 @@ def github_api(app, db, tester_id, remote_token):
         return MagicMock(decoded=b(data))
     repo_2.file_contents = MagicMock(side_effect=mock_metadata_contents)
 
-    repo_3 = github3.repos.Repository(fixtures.REPO('auser', 'arepo', 3))
+    repo_3 = github3.repos.Repository(fixtures.REPO('auser', 'arepo', 3), gs)
     repo_3.hooks = MagicMock(return_value=[])
     repo_3.file_contents = MagicMock(return_value=None)
 
