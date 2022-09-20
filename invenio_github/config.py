@@ -71,6 +71,9 @@ GITHUB_METADATA_FILE = '.invenio.json'
 GITHUB_CITATION_FILE = 'CITATION.cff'
 """File with citation metadata stored in GitHub repository."""
 
+GITHUB_CITATION_METADATA_SCHEMA = ''
+"""Schema for citation metadata."""
+
 GITHUB_DEPOSIT_CLASS = 'invenio_deposit.api:Deposit'
 """Deposit class that implements a `publish` method."""
 
