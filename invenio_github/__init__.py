@@ -28,4 +28,4 @@ from .ext import InvenioGitHub
 
 __version__ = "1.0.0a25"
 
-__all__ = ('__version__', 'InvenioGitHub')
+__all__ = ("__version__", "InvenioGitHub")
